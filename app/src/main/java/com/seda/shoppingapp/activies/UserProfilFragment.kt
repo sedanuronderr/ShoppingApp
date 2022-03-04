@@ -63,6 +63,7 @@ class UserProfilFragment : Fragment(),View.OnClickListener {
         binding.email1.setText(user.email)
 
         binding.userPhoto.setOnClickListener(this)
+        binding.submit.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -80,6 +81,12 @@ class UserProfilFragment : Fragment(),View.OnClickListener {
                     else{
                         ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),
                         2)
+                    }
+                }
+                R.id.submit->{
+
+                    if(validateUserProfileDetails()){
+Toast.makeText(requireContext(),"Başarılı",Toast.LENGTH_LONG).show()
                     }
                 }
             }
@@ -126,6 +133,7 @@ if(resultCode == Activity.RESULT_OK){
     private fun validateUserProfileDetails():Boolean{
         return when{
             TextUtils.isEmpty(binding.mobilNumber.text.toString().trim())->{
+                view?.let { FirestoreClass.showErrorSnackBar("error","", it) }
              false
             }
          else ->{
