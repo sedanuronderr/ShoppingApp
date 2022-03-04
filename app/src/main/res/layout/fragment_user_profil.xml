@@ -24,8 +24,8 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="Profile"
-        android:textSize="40dp"
-        android:textColor="@color/black"
+        android:textSize="30dp"
+        android:textColor="@color/white"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
         app:layout_constraintEnd_toEndOf="@+id/toolbar2"
@@ -53,11 +53,12 @@
 
             <FrameLayout
                 android:id="@+id/user_image"
-                android:layout_width="180dp"
+                android:layout_width="0dp"
                 android:layout_height="143dp"
+                android:layout_marginStart="110dp"
                 android:layout_marginTop="9dp"
+                android:layout_marginEnd="110dp"
 
-                android:layout_marginEnd="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -69,6 +70,7 @@
 
                     android:layout_gravity="center"
 
+                    android:scaleType="fitXY"
                     app:srcCompat="@drawable/person" />
 
                 <View
@@ -81,12 +83,12 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout"
-                android:layout_width="366dp"
+                android:layout_width="0dp"
                 android:layout_height="53dp"
-                android:layout_marginStart="35dp"
+                android:layout_marginStart="25dp"
                 android:layout_marginTop="50dp"
-                android:layout_marginEnd="35dp"
-
+                android:layout_marginEnd="25dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 app:layout_constraintBottom_toTopOf="@+id/textInputLayout2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -96,16 +98,17 @@
                     android:id="@+id/first"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
+
                     android:hint="First Name" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout2"
-                android:layout_width="366dp"
+                android:layout_width="0dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="45dp"
-                android:layout_marginEnd="45dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
                 android:translationY="3dp"
                 app:layout_constraintBottom_toTopOf="@+id/textInputLayout3"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -116,14 +119,17 @@
                     android:id="@+id/last"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
+
                     android:hint="Last Name" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout3"
-                android:layout_width="366dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
                 android:translationY="3dp"
                 app:layout_constraintBottom_toTopOf="@+id/textInputLayout4"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -134,16 +140,17 @@
                     android:id="@+id/email1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
+
                     android:hint="Email" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout4"
-                android:layout_width="366dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="45dp"
-                android:layout_marginEnd="45dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
                 android:layout_marginBottom="170dp"
                 android:translationY="3dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -155,14 +162,16 @@
                     android:id="@+id/mobil_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
+
                     android:hint="Mobil Number" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <RadioGroup
                 android:id="@+id/radioGroup2"
-                android:layout_width="387dp"
+                android:layout_width="0dp"
                 android:layout_height="50dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
                 android:orientation="horizontal"
                 android:translationY="-39dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -201,12 +210,12 @@
 
             <com.seda.shoppingapp.utils.MSPButton
                 android:id="@+id/submit"
-                android:layout_width="365dp"
-                android:layout_height="49dp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:layout_marginStart="23dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="23dp"
-                android:layout_marginBottom="3dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/button_background"
                 android:gravity="center"
                 android:text="Submit"
@@ -214,7 +223,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroup2">
+                app:layout_constraintTop_toBottomOf="@+id/radioGroup2"
+                tools:ignore="TouchTargetSizeCheck">
 
             </com.seda.shoppingapp.utils.MSPButton>
 
