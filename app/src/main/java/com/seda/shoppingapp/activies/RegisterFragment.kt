@@ -62,18 +62,9 @@ class RegisterFragment : Fragment() {
             validation(it)
 
         }
+
     }
 
-    fun showErrorSnackBar(message: String, errorMessage: String, view: View) {
-        val sb = Snackbar.make(view, message, Snackbar.LENGTH_LONG)
-        sb.setAction(errorMessage) {
-
-        }
-        sb.setActionTextColor(Color.RED)
-        sb.setTextColor(Color.BLACK)
-        sb.setBackgroundTint(R.color.teal_200)
-        sb.show()
-    }
 
     private fun validation(view: View) {
 
@@ -119,7 +110,8 @@ class RegisterFragment : Fragment() {
            FirebaseAuth.getInstance().signOut()
 
 
-                    } else {
+                    }
+                    else {
                         // If sign in fails, display a message to the user.
                         showErrorSnackBar("Bilgileri kontrol ediniz", "Tekrar Deneyin", view)
                         hideProgressDialog()
@@ -141,6 +133,24 @@ class RegisterFragment : Fragment() {
 
 
 }
+
+
+
+
+
+
+
+    fun showErrorSnackBar(message: String, errorMessage: String, view: View) {
+        val sb = Snackbar.make(view, message, Snackbar.LENGTH_LONG)
+        sb.setAction(errorMessage) {
+
+        }
+        sb.setActionTextColor(Color.RED)
+        sb.setTextColor(Color.BLACK)
+        sb.setBackgroundTint(R.color.teal_200)
+        sb.show()
+    }
+
     fun showProgress(){
 
         mProgressDialog= Dialog(requireActivity())

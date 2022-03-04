@@ -16,6 +16,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.auth.User
 import com.google.firebase.ktx.Firebase
 import com.seda.shoppingapp.Firestore.FirestoreClass
@@ -68,17 +69,16 @@ onStop()
 onStop()
         }
 
-        val per= activity?.getSharedPreferences("kisiselbilgiler", Context.MODE_PRIVATE)
-         username = per?.getString("username","").toString()
-         lastname = per?.getString("lastname","").toString()
-         emailll = per?.getString("lastname","").toString()
-        Log.e("cevap","${username}")
+
 
 
     }
     private fun login(view: View){
         email =binding.email.text.toString().trim()
         password= binding.passwordd.text.toString().trim()
+
+
+
         if (TextUtils.isEmpty(email) ) {
             showErrorSnackBar("Eksik Girdiniz", "Tekrar Deneyin", view)
             hideProgressDialog()
@@ -91,14 +91,11 @@ onStop()
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-
+                        FirestoreClass.registerget(this,view)
                         // Sign in success, update UI with the signed-in user's information
                         showErrorSnackBar("Başarılı Kayıt ", " ", view)
-                        val firebaseUser : FirebaseUser = task.result!!.user!!
 
-         val user =com.seda.shoppingapp.model.User(firebaseUser.uid,username,lastname,emailll)
 
-   FirestoreClass.userLoggedInSuccess(user,view)
                         auth.signOut()
                     } else {
                         // If sign in fails, display a message to the user.
@@ -106,10 +103,29 @@ onStop()
                         Toast.makeText(context, "Authentication failed.",
                             Toast.LENGTH_SHORT).show()
                     }
-                   // FirestoreClass.registerget(this)
+
                 }
         }
     }
+
+
+
+    fun userLoggedInSuccess(user: com.seda.shoppingapp.model.User,view: View){
+
+        if(user.profileCompleted == 0){
+            val gecis =LoginFragmentDirections.actionLoginFragmentToUserProfilFragment(user)
+            Navigation.findNavController(view).navigate(gecis)
+
+
+        }else{
+            Navigation.findNavController(view).navigate(R.id.baseFragment)
+
+        }
+    }
+
+
+
+
     fun showProgress(){
 
         mProgressDialog= Dialog(requireActivity())
@@ -134,4 +150,6 @@ onStop()
         sb.setBackgroundTint(Color.rgb(0,255,0))
         sb.show()
     }
+
+
 }

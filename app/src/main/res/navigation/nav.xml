@@ -57,5 +57,8 @@
         <action
             android:id="@+id/action_userProfilFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <argument
+            android:name="user1"
+            app:argType="com.seda.shoppingapp.model.User" />
     </fragment>
 </navigation>
