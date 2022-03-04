@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "492132355840",
+    "project_id": "shopapp-1ac40",
+    "storage_bucket": "shopapp-1ac40.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:492132355840:android:31971198981c373cc72de5",
+        "android_client_info": {
+          "package_name": "com.seda.shoppingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "492132355840-d0n7dq9vgdbj5spu38teei1j058dsp72.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPNPJ5cSN2T2Jh_edGaZ0LxXa2YafHq3Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "492132355840-d0n7dq9vgdbj5spu38teei1j058dsp72.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

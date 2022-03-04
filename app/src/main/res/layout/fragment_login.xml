@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activies.LoginFragment">
+
+    <FrameLayout
+        android:id="@+id/frameLayout2"
+        android:layout_width="0dp"
+        android:layout_height="180dp"
+        android:translationY="-6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- TODO: Update blank fragment layout -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/button_background">
+
+        </ImageView>
+
+        <com.seda.shoppingapp.utils.MSPEditText
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:gravity="center"
+            android:text="LOGİN"
+            android:layout_gravity="center"
+            android:textColor="#090808"
+            android:textSize="44sp"
+            android:textStyle="bold"
+            android:transformPivotX="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="210dp">
+
+        </com.seda.shoppingapp.utils.MSPEditText>
+
+
+    </FrameLayout>
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_email"
+        android:layout_width="341dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        android:hint="@string/e_mail"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout2">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_password"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="341dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="44dp"
+        android:hint="password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_email">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwordd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/sifreunuttum"
+        android:layout_width="121dp"
+        android:layout_height="23dp"
+        android:layout_marginEnd="32dp"
+        android:text="Şifremi Unuttum"
+        app:layout_constraintBottom_toTopOf="@+id/btn_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_password"
+        app:layout_constraintVertical_bias="0.292">
+
+    </TextView>
+
+    <com.seda.shoppingapp.utils.MSPButton
+        android:id="@+id/btn_login"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
+        android:background="@drawable/button_background"
+        android:text="LOGIN"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_password">
+
+    </com.seda.shoppingapp.utils.MSPButton>
+
+    <LinearLayout
+        android:layout_width="290dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="34dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login">
+
+        <com.seda.shoppingapp.utils.MSPTextViewBold
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:text="@string/hesab_n_z_yok_mu"
+            android:textSize="20sp">
+
+        </com.seda.shoppingapp.utils.MSPTextViewBold>
+
+        <com.seda.shoppingapp.utils.MSPTextViewBold
+            android:id="@+id/tv_register"
+            android:layout_width="90dp"
+            android:layout_height="match_parent"
+            android:text="@string/register"
+            android:textSize="24sp">
+
+        </com.seda.shoppingapp.utils.MSPTextViewBold>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+

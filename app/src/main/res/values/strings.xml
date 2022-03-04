@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">ShoppingApp</string>
+    <string name="myshop">MyShop</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login">Login</string>
+    <string name="e_mail">e-mail</string>
+    <string name="register">Register</string>
+    <string name="hesab_n_z_yok_mu">Hesabınız yok mu </string>
+    <string name="hesap_olu_tur">Hesap Oluştur</string>
+    <string name="t_m_ko_ullar_ve_bilgileri_onayl_yorum">Tüm koşulları ve bilgileri onaylıyorum</string>
+    <string name="reg_ster">REGİSTER</string>
+    <string name="last_name">Last Name</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+</resources>
