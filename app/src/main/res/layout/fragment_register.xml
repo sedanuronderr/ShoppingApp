@@ -43,7 +43,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_firstName"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="341dp"
+            android:layout_width="0dp"
             android:layout_height="56dp"
             android:layout_marginStart="40dp"
             android:layout_marginTop="10dp"
@@ -63,7 +63,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_lastName"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="341dp"
+            android:layout_width="0dp"
             android:layout_height="56dp"
             android:layout_marginStart="40dp"
             android:layout_marginTop="24dp"
@@ -75,14 +75,15 @@
             app:layout_constraintTop_toBottomOf="@+id/til_firstName">
 
             <com.google.android.material.textfield.TextInputEditText
-              android:id="@+id/lastName"
+                android:id="@+id/lastName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_email"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="341dp"
+            android:layout_width="0dp"
             android:layout_height="56dp"
             android:layout_marginStart="40dp"
             android:layout_marginTop="24dp"
@@ -98,10 +99,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_password"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="341dp"
+            android:layout_width="0dp"
             android:layout_height="56dp"
             android:layout_marginStart="40dp"
             android:layout_marginTop="24dp"
@@ -121,7 +123,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_confirm_password"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="341dp"
+            android:layout_width="0dp"
             android:layout_height="56dp"
             android:layout_marginStart="40dp"
             android:layout_marginTop="24dp"
@@ -141,18 +143,19 @@
 
         <com.seda.shoppingapp.utils.MSPButton
             android:id="@+id/register"
-            android:layout_width="302dp"
+            android:layout_width="0dp"
             android:layout_height="48dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
             android:layout_marginBottom="172dp"
             android:background="@drawable/button_background"
             android:text="@string/reg_ster"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintStart_toStartOf="parent"
 
-            >
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent">
 
         </com.seda.shoppingapp.utils.MSPButton>
     </androidx.constraintlayout.widget.ConstraintLayout>

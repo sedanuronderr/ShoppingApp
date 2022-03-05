@@ -19,7 +19,9 @@
             app:destination="@id/baseFragment" />
         <action
             android:id="@+id/action_loginFragment_to_userProfilFragment"
-            app:destination="@id/userProfilFragment" />
+            app:destination="@id/userProfilFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -45,7 +47,11 @@
         android:id="@+id/baseFragment"
         android:name="com.seda.shoppingapp.activies.BaseFragment"
         android:label="fragment_base"
-        tools:layout="@layout/fragment_base" />
+        tools:layout="@layout/fragment_base" >
+        <action
+            android:id="@+id/action_baseFragment_to_userProfilFragment"
+            app:destination="@id/userProfilFragment" />
+    </fragment>
     <fragment
         android:id="@+id/userProfilFragment"
         android:name="com.seda.shoppingapp.activies.UserProfilFragment"
@@ -53,7 +59,9 @@
         tools:layout="@layout/fragment_user_profil" >
         <action
             android:id="@+id/action_userProfilFragment_to_baseFragment"
-            app:destination="@id/baseFragment" />
+            app:destination="@id/baseFragment"
+            app:popUpTo="@id/userProfilFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_userProfilFragment_to_loginFragment"
             app:destination="@id/loginFragment" />

@@ -8,8 +8,10 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import com.seda.shoppingapp.activies.LoginFragment
 import com.seda.shoppingapp.activies.RegisterFragment
+import com.seda.shoppingapp.activies.UserProfilFragment
 import com.seda.shoppingapp.model.User
 
 class FirestoreClass {
@@ -21,7 +23,7 @@ companion object {
        // val db = Firebase.firestore
         db.collection("users")
             .document(userInfo.id.toString())
-            .set(userInfo)
+            .set(userInfo, SetOptions.merge())
             .addOnSuccessListener {e->
 
                Log.e("kelime","${userInfo}")
@@ -49,7 +51,7 @@ companion object {
 
     fun getcurrentId():String{
         var currentId =""
-        val currentUser= FirebaseAuth.getInstance().currentUser
+        val currentUser = FirebaseAuth.getInstance().currentUser
         if(currentUser!=null){
             currentId= currentUser.uid
         }
@@ -65,6 +67,7 @@ companion object {
             val editor =per?.edit()
             editor?.putString("username","${city?.firstName} ")
             editor?.putString("lastname","${city?.lastName}")
+
             editor?.putString("email","${city?.email}")
             editor?.apply()
 
@@ -81,7 +84,29 @@ companion object {
 
     }
 
+fun updateUser(activity: Fragment,userHashMap:MutableMap<String, Any> ,id:String){
 
+
+    val db = FirebaseFirestore.getInstance()
+    db.collection("users").document(id)
+        .update(userHashMap)
+        .addOnSuccessListener {
+            when(activity){
+                is UserProfilFragment->{
+
+                    activity.userProfileUpdate()
+                }
+            }
+        }
+        .addOnFailureListener { e->
+            when(activity){
+                is UserProfilFragment->{
+
+                    activity.hideProgressDialog()
+                }
+            }
+        }
+}
 }
 
 

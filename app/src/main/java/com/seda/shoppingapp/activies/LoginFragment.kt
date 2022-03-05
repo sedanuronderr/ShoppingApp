@@ -93,7 +93,6 @@ onStop()
                     if (task.isSuccessful) {
                         FirestoreClass.registerget(this,view)
                         // Sign in success, update UI with the signed-in user's information
-                        showErrorSnackBar("Başarılı Kayıt ", " ", view)
 
 
                         auth.signOut()
@@ -115,6 +114,7 @@ onStop()
         if(user.profileCompleted == 0){
             val gecis =LoginFragmentDirections.actionLoginFragmentToUserProfilFragment(user)
             Navigation.findNavController(view).navigate(gecis)
+
 
 
         }else{

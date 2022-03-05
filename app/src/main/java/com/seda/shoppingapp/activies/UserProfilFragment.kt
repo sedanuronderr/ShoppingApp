@@ -1,10 +1,12 @@
 package com.seda.shoppingapp.activies
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.provider.MediaStore
 import android.text.TextUtils
 import android.util.Log
@@ -15,7 +17,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import com.seda.shoppingapp.Constants
 import com.seda.shoppingapp.Firestore.FirestoreClass
 import com.seda.shoppingapp.R
 import com.seda.shoppingapp.databinding.FragmentUserProfilBinding
@@ -27,8 +34,13 @@ import java.util.jar.Manifest
 
 class UserProfilFragment : Fragment(),View.OnClickListener {
      val bundle : UserProfilFragmentArgs by navArgs()
+    private lateinit var mProgressDialog: Dialog
     private lateinit var _binding :FragmentUserProfilBinding
        private  val binding  get()=_binding
+    private lateinit var auth: FirebaseAuth
+  private lateinit var userid: String
+val completed = 1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -46,10 +58,11 @@ class UserProfilFragment : Fragment(),View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
        var user:User= User()
-
+        auth = Firebase.auth
          user = bundle.user1
-        val keki= bundle.user1.firstName.toString()
-        Log.e("cevappppp","${keki}")
+       userid= bundle.user1.id
+
+
 
 
 
@@ -86,11 +99,39 @@ class UserProfilFragment : Fragment(),View.OnClickListener {
                 R.id.submit->{
 
                     if(validateUserProfileDetails()){
-Toast.makeText(requireContext(),"Başarılı",Toast.LENGTH_LONG).show()
+          val userHashMap = mutableMapOf<String,Any>()
+         val number = binding.mobilNumber.text.toString().trim()
+                    val gender = if(binding.male.isChecked){
+                        Constants.MALE
+                    }else{
+                 Constants.FEMALE
+                    }//key :gender value:male
+                        if(binding.mobilNumber.text!!.isNotEmpty()) {
+                            userHashMap[Constants.MOBILE]= number.toLong()
+
+                        }
+                        userHashMap[Constants.GENDER]= gender
+                        showProgress()
+                         userHashMap["profileCompleted"] = completed
+                        FirestoreClass.updateUser(this,userHashMap,userid)
+
+                    }else {
+                        // If sign in fails, display a message to the user.
+
+                        Toast.makeText(context, "Authentication failed.",
+                            Toast.LENGTH_SHORT).show()
                     }
                 }
             }
         }
+    }
+    fun userProfileUpdate(){
+        hideProgressDialog()
+        Toast.makeText(requireContext(),"Profile oluşturuldu",Toast.LENGTH_LONG).show()
+        view?.let { Navigation.findNavController(it).navigate(R.id.baseFragment)
+
+        }
+
     }
 
     override fun onRequestPermissionsResult(
@@ -140,6 +181,18 @@ if(resultCode == Activity.RESULT_OK){
              true
          }
         }
+    }
+    fun showProgress(){
+
+        mProgressDialog= Dialog(requireActivity())
+        mProgressDialog.setContentView(R.layout.diaolog_progress)
+        mProgressDialog.setCancelable(false)
+        mProgressDialog.setCanceledOnTouchOutside(false)
+        mProgressDialog.show()
+
+    }
+    fun hideProgressDialog(){
+        mProgressDialog.dismiss()
     }
 
 }
