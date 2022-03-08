@@ -6,17 +6,27 @@
         <entry key="..\:/ShoppingApp/app/src/main/res/drawable/button_background.xml" value="0.1" />
         <entry key="..\:/ShoppingApp/app/src/main/res/drawable/drawble_gender_tab.xml" value="0.171" />
         <entry key="..\:/ShoppingApp/app/src/main/res/drawable/drawble_gender_tab_text.xml" value="0.1" />
+        <entry key="..\:/ShoppingApp/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.2595" />
+        <entry key="..\:/ShoppingApp/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.2595" />
+        <entry key="..\:/ShoppingApp/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.2595" />
         <entry key="..\:/ShoppingApp/app/src/main/res/drawable/person.xml" value="0.228" />
         <entry key="..\:/ShoppingApp/app/src/main/res/drawable/toolbar.xml" value="0.2" />
         <entry key="..\:/ShoppingApp/app/src/main/res/drawable/user_background.xml" value="0.136" />
+        <entry key="..\:/ShoppingApp/app/src/main/res/layout/activity_dash_board.xml" value="0.16006944444444443" />
+        <entry key="..\:/ShoppingApp/app/src/main/res/layout/activity_dashboard.xml" value="0.1" />
         <entry key="..\:/ShoppingApp/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/ShoppingApp/app/src/main/res/layout/activity_main2.xml" value="0.1" />
         <entry key="..\:/ShoppingApp/app/src/main/res/layout/activity_splash.xml" value="0.1" />
         <entry key="..\:/ShoppingApp/app/src/main/res/layout/diaolog_progress.xml" value="0.2" />
         <entry key="..\:/ShoppingApp/app/src/main/res/layout/fragment_base.xml" value="0.1" />
+        <entry key="..\:/ShoppingApp/app/src/main/res/layout/fragment_dashboard.xml" value="0.16944444444444445" />
         <entry key="..\:/ShoppingApp/app/src/main/res/layout/fragment_forget_password.xml" value="0.1" />
+        <entry key="..\:/ShoppingApp/app/src/main/res/layout/fragment_home.xml" value="0.16944444444444445" />
         <entry key="..\:/ShoppingApp/app/src/main/res/layout/fragment_login.xml" value="0.1" />
+        <entry key="..\:/ShoppingApp/app/src/main/res/layout/fragment_notifications.xml" value="0.16944444444444445" />
         <entry key="..\:/ShoppingApp/app/src/main/res/layout/fragment_register.xml" value="0.1" />
         <entry key="..\:/ShoppingApp/app/src/main/res/layout/fragment_user_profil.xml" value="0.1" />
+        <entry key="..\:/ShoppingApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.15486111111111112" />
       </map>
     </option>
   </component>

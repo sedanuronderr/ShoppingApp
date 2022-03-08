@@ -58,10 +58,14 @@ Navigation.findNavController(it).navigate(R.id.registerFragment)
 
   }
 
-        val currentUser = FirebaseAuth.getInstance().currentUser
-        if(currentUser != null){
-               Navigation.findNavController(view).navigate(R.id.baseFragment)
+        if(auth.currentUser != null){
+
+            val intent = Intent(context,MainActivity2::class.java)
+            startActivity(intent)
+            activity?.finish()
         }
+
+
         binding.btnLogin.setOnClickListener {
             login(it)
 
@@ -123,8 +127,10 @@ Navigation.findNavController(it).navigate(R.id.registerFragment)
 
 
         }else{
-            Navigation.findNavController(view).navigate(R.id.baseFragment)
-           showErrorSnackBar("Başarılı Giriş","",view)
+
+            val intent = Intent(context,MainActivity2 ::class.java)
+            startActivity(intent)
+            activity?.finish()
         }
     }
 
