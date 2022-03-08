@@ -16,11 +16,13 @@
             app:popUpTo="@id/loginFragment" />
         <action
             android:id="@+id/action_loginFragment_to_baseFragment"
-            app:destination="@id/baseFragment" />
+            app:destination="@id/baseFragment"
+            app:popUpTo="@id/baseFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_loginFragment_to_userProfilFragment"
             app:destination="@id/userProfilFragment"
-            app:popUpTo="@id/loginFragment"
+            app:popUpTo="@id/userProfilFragment"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
@@ -60,7 +62,7 @@
         <action
             android:id="@+id/action_userProfilFragment_to_baseFragment"
             app:destination="@id/baseFragment"
-            app:popUpTo="@id/userProfilFragment"
+            app:popUpTo="@id/baseFragment"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_userProfilFragment_to_loginFragment"

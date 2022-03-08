@@ -2,6 +2,7 @@ package com.seda.shoppingapp.Firestore
 
 import android.content.Context
 import android.graphics.Color
+import android.net.Uri
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -9,6 +10,9 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.seda.shoppingapp.Constants
 import com.seda.shoppingapp.activies.LoginFragment
 import com.seda.shoppingapp.activies.RegisterFragment
 import com.seda.shoppingapp.activies.UserProfilFragment
@@ -107,6 +111,32 @@ fun updateUser(activity: Fragment,userHashMap:MutableMap<String, Any> ,id:String
             }
         }
 }
+
+
+    fun uploadImage(activity: Fragment,imageFileUri: Uri?){
+      val sRef:StorageReference= FirebaseStorage.getInstance().reference.child(
+          Constants.USER_PROFILE + System.currentTimeMillis() + "." + Constants.getMimeType(activity,imageFileUri))
+
+   sRef.putFile(imageFileUri!!).addOnSuccessListener { taskSnapshot->
+         Log.e("Firebase image",taskSnapshot.metadata!!.reference!!.downloadUrl.toString())
+
+  taskSnapshot.metadata!!.reference!!.downloadUrl.addOnSuccessListener { uri->
+      when(activity){
+          is UserProfilFragment->{
+              activity.imageUploadSuccess(uri.toString())
+          }
+      }
+  }
+
+   }.addOnFailureListener{exception->
+       when (activity){
+           is UserProfilFragment->{
+              activity.hideProgressDialog()
+           }
+       }
+       Log.e(activity.javaClass.simpleName,exception.message!!,exception)
+   }
+    }
 }
 
 

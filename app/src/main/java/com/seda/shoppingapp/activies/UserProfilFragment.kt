@@ -14,6 +14,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.MimeTypeMap
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -40,6 +42,8 @@ class UserProfilFragment : Fragment(),View.OnClickListener {
     private lateinit var auth: FirebaseAuth
   private lateinit var userid: String
 val completed = 1
+private var mselectedImage :Uri?= null
+    private var imageUrl:String =""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,51 +84,88 @@ val completed = 1
     }
 
     override fun onClick(v: View?) {
-        if(v !=null){
-            when(v.id){
+        if (v != null) {
+            when (v.id) {
 
-                R.id.user_photo ->{
-                    if(ContextCompat.checkSelfPermission(requireContext(),android.Manifest.permission.READ_EXTERNAL_STORAGE)
-                        == PackageManager.PERMISSION_GRANTED){
+                R.id.user_photo -> {
+                    if (ContextCompat.checkSelfPermission(
+                            requireContext(),
+                            android.Manifest.permission.READ_EXTERNAL_STORAGE
+                        )
+                        == PackageManager.PERMISSION_GRANTED
+                    ) {
 
-                            val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                        startActivityForResult(galleryIntent,1)
+                        val galleryIntent =
+                            Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                        startActivityForResult(galleryIntent, 1)
 
-                    }
-                    else{
-                        ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),
-                        2)
+                    } else {
+                        ActivityCompat.requestPermissions(
+                            requireActivity(),
+                            arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),
+                            2
+                        )
                     }
                 }
-                R.id.submit->{
+                R.id.submit -> {
 
-                    if(validateUserProfileDetails()){
-          val userHashMap = mutableMapOf<String,Any>()
-         val number = binding.mobilNumber.text.toString().trim()
-                    val gender = if(binding.male.isChecked){
-                        Constants.MALE
-                    }else{
-                 Constants.FEMALE
-                    }//key :gender value:male
-                        if(binding.mobilNumber.text!!.isNotEmpty()) {
-                            userHashMap[Constants.MOBILE]= number.toLong()
 
+                    if (validateUserProfileDetails()) {
+
+                        if (mselectedImage != null)
+                            FirestoreClass.uploadImage(this, mselectedImage)
+                        else {
+                            updateProfildetails()
                         }
-                        userHashMap[Constants.GENDER]= gender
-                        showProgress()
-                         userHashMap["profileCompleted"] = completed
-                        FirestoreClass.updateUser(this,userHashMap,userid)
 
-                    }else {
-                        // If sign in fails, display a message to the user.
+                        //key :gender value:male
 
-                        Toast.makeText(context, "Authentication failed.",
-                            Toast.LENGTH_SHORT).show()
                     }
                 }
             }
         }
     }
+    fun updateProfildetails() {
+        val userHashMap = mutableMapOf<String,Any>()
+
+        val number = binding.mobilNumber.text.toString().trim()
+        val gender = if(binding.male.isChecked){
+            Constants.MALE
+        }else{
+            Constants.FEMALE
+        }
+
+        if(imageUrl.isNotEmpty()){
+            userHashMap[Constants.IMAGE]=imageUrl
+
+        }
+        if(binding.mobilNumber.text!!.isNotEmpty()) {
+            userHashMap[Constants.MOBILE]= number.toLong()
+
+        }else {
+            // If sign in fails, display a message to the user.
+
+            Toast.makeText(context, "Authentication failed.",
+                Toast.LENGTH_SHORT).show()
+        }
+        userHashMap[Constants.GENDER]= gender
+        showProgress()
+        userHashMap["profileCompleted"] = completed
+        FirestoreClass.updateUser(this,userHashMap,userid)
+
+    }
+
+
+
+
+
+    fun imageUploadSuccess(imageUrll:String){
+
+        imageUrl =imageUrll
+        updateProfildetails()
+    }
+
+
     fun userProfileUpdate(){
         hideProgressDialog()
         Toast.makeText(requireContext(),"Profile oluşturuldu",Toast.LENGTH_LONG).show()
@@ -157,10 +198,10 @@ val completed = 1
 if(resultCode == Activity.RESULT_OK){
     if(data != null){
         try{
-            val selected = data.data!!
+            mselectedImage = data.data!!
             //   binding.userPhoto.setImageURI(Uri.parse(selected.toString()))
 
-            GlideLoader(requireContext()).loadUserPicture(selected,binding.userPhoto)
+            GlideLoader(requireContext()).loadUserPicture(mselectedImage!!,binding.userPhoto)
         }catch (e:IOException){
             e.printStackTrace()
         }
@@ -174,9 +215,10 @@ if(resultCode == Activity.RESULT_OK){
     private fun validateUserProfileDetails():Boolean{
         return when{
             TextUtils.isEmpty(binding.mobilNumber.text.toString().trim())->{
-                view?.let { FirestoreClass.showErrorSnackBar("error","", it) }
+                view?.let { FirestoreClass.showErrorSnackBar(" Mobil phone empty","", it) }
              false
             }
+
          else ->{
              true
          }
@@ -193,6 +235,7 @@ if(resultCode == Activity.RESULT_OK){
     }
     fun hideProgressDialog(){
         mProgressDialog.dismiss()
+
     }
 
 }

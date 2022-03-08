@@ -55,8 +55,13 @@ class LoginFragment : Fragment() {
         auth = Firebase.auth
   binding.tvRegister.setOnClickListener {
 Navigation.findNavController(it).navigate(R.id.registerFragment)
-onStop()
+
   }
+
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if(currentUser != null){
+               Navigation.findNavController(view).navigate(R.id.baseFragment)
+        }
         binding.btnLogin.setOnClickListener {
             login(it)
 
@@ -64,15 +69,15 @@ onStop()
         binding.sifreunuttum.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.forgetPasswordFragment)
         }
-        if(auth.currentUser != null){
-            Navigation.findNavController(view).navigate(R.id.baseFragment)
-onStop()
-        }
+
+
 
 
 
 
     }
+
+
     private fun login(view: View){
         email =binding.email.text.toString().trim()
         password= binding.passwordd.text.toString().trim()
@@ -95,7 +100,7 @@ onStop()
                         // Sign in success, update UI with the signed-in user's information
 
 
-                        auth.signOut()
+                       auth.signOut()
                     } else {
                         // If sign in fails, display a message to the user.
 
@@ -119,7 +124,7 @@ onStop()
 
         }else{
             Navigation.findNavController(view).navigate(R.id.baseFragment)
-
+           showErrorSnackBar("Başarılı Giriş","",view)
         }
     }
 
@@ -147,7 +152,7 @@ onStop()
         }
         sb.setActionTextColor(Color.RED)
         sb.setTextColor(Color.BLACK)
-        sb.setBackgroundTint(Color.rgb(0,255,0))
+        sb.setBackgroundTint(Color.WHITE)
         sb.show()
     }
 

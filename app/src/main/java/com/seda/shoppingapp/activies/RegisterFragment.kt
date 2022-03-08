@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -61,6 +62,8 @@ class RegisterFragment : Fragment() {
         binding.register.setOnClickListener {
             validation(it)
 
+
+
         }
 
     }
@@ -106,6 +109,7 @@ class RegisterFragment : Fragment() {
                         FirestoreClass.showErrorSnackBar("Başarılı Kayıt ", " ", view)
                          //   UserProfileChangeRequest.Builder().setDisplayName(ad).build()
                       //  auth.currentUser!!.updateProfile(update)
+                        Navigation.findNavController(view).navigate(R.id.loginFragment)
 
            FirebaseAuth.getInstance().signOut()
 
@@ -122,8 +126,7 @@ class RegisterFragment : Fragment() {
                         firebaseUser.uid,
                         ad,
                         lastad,
-                        emaill,
-                        sifre
+                        emaill
                     )
                 FirestoreClass.registerUser(this,city)
 
