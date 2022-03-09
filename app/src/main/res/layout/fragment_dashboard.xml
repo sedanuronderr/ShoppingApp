@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".activies.ui.dashboard.DashboardFragment">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/dashboard_menu">
+
+    </androidx.appcompat.widget.Toolbar>
+
     <TextView
         android:id="@+id/text_dashboard"
         android:layout_width="match_parent"
