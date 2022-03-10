@@ -121,6 +121,7 @@ Navigation.findNavController(it).navigate(R.id.registerFragment)
     fun userLoggedInSuccess(user: com.seda.shoppingapp.model.User,view: View){
 
         if(user.profileCompleted == 0){
+            FirestoreClass.getcurrentId()
             val gecis =LoginFragmentDirections.actionLoginFragmentToUserProfilFragment(user)
             Navigation.findNavController(view).navigate(gecis)
 

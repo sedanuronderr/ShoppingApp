@@ -18,7 +18,7 @@ import com.seda.shoppingapp.databinding.ActivitySettingsBinding
 import com.seda.shoppingapp.model.User
 import com.seda.shoppingapp.utils.GlideLoader
 
-class SettingsActivity : AppCompatActivity() {
+class SettingsActivity : AppCompatActivity(),View.OnClickListener {
 
     private lateinit var binding:ActivitySettingsBinding
     lateinit var  fragment : DashboardFragment
@@ -31,15 +31,10 @@ class SettingsActivity : AppCompatActivity() {
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val currentUser = FirebaseAuth.getInstance().currentUser
-        if(currentUser!=null){
-            useridd = currentUser.uid
-        }
-
-
-        Log.e("djssksl",useridd)
-       // getUserDetails()
-
+        getUserDetails()
+        binding.logout.setOnClickListener(this)
+        binding.edit.setOnClickListener(this)
+        setupActionBar()
     }
 
 private fun getUserDetails(){
@@ -69,8 +64,36 @@ private fun getUserDetails(){
 
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onClick(v: View?) {
+if(v != null){
+    when(v.id){
+        R.id.edit->{
+            val intent=Intent(this,MainActivity2::class.java)
+            startActivity(intent)
+        }
+
+        R.id.logout->{
+            FirebaseAuth.getInstance().signOut()
+            val intent=Intent(this,MainActivity::class.java)
+            intent.flags =Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
+        }
+    }
+}
 
     }
+    private fun setupActionBar(){
+        setSupportActionBar(binding.toolbar7)
+
+        val actionBar =supportActionBar
+
+        if(actionBar != null){
+            actionBar.setDisplayHomeAsUpEnabled(true)
+            actionBar.setHomeAsUpIndicator(R.drawable.back)
+        }
+        binding.toolbar7.setNavigationOnClickListener{onBackPressed()}
+    }
+
+
 }

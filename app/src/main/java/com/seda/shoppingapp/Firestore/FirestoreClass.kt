@@ -7,6 +7,7 @@ import android.net.Uri
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide.init
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -23,6 +24,9 @@ import com.seda.shoppingapp.model.User
 class FirestoreClass {
 
 companion object {
+
+
+
     var currentId =""
     fun registerUser(activity: RegisterFragment, userInfo:User) {
        val db = FirebaseFirestore.getInstance()
@@ -60,6 +64,7 @@ companion object {
         val currentUser = FirebaseAuth.getInstance().currentUser
         if(currentUser!=null){
             currentId= currentUser.uid
+            Log.e("söyle", currentId)
         }
         return currentId
     }
@@ -142,12 +147,13 @@ fun updateUser(activity: Fragment,userHashMap:MutableMap<String, Any> ,id:String
 
     fun registeractivityget(activity: Activity){
         val db = FirebaseFirestore.getInstance()
-        db.collection("users").document(currentId)
+        db.collection("users").document(getcurrentId())
             .get().addOnSuccessListener { documentSnapshot ->
                 val city = documentSnapshot.toObject(User::class.java)
                 val per = activity.getSharedPreferences("kisiselbilgiler", Context.MODE_PRIVATE)
                 val editor =per?.edit()
                 editor?.putString("username","${city?.firstName} ")
+                city?.firstName?.let { Log.e("iddd", it) }
                 editor?.putString("lastname","${city?.lastName}")
 
                 editor?.putString("email","${city?.email}")
@@ -156,6 +162,7 @@ fun updateUser(activity: Fragment,userHashMap:MutableMap<String, Any> ,id:String
        when(activity){
           is SettingsActivity->{
               if (city != null) {
+
                   activity.userDetailsuccess(city)
               }
           }

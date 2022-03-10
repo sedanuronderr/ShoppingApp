@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.ActionBar
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.TextView
 import android.widget.Toast
@@ -12,16 +13,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.navArgs
 import com.seda.shoppingapp.R
 import com.seda.shoppingapp.activies.MainActivity2
 import com.seda.shoppingapp.activies.SettingsActivity
+import com.seda.shoppingapp.activies.UserProfilFragmentArgs
 import com.seda.shoppingapp.databinding.FragmentDashboardBinding
 
 
 class DashboardFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
-
+    lateinit var user: String
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -69,10 +72,9 @@ class DashboardFragment : Fragment() {
 
             }
         }
-    }
-fun ddd(s:String){
 
-}
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 

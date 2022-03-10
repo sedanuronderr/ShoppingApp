@@ -6,20 +6,17 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.provider.MediaStore
 import android.text.TextUtils
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.MimeTypeMap
-import android.widget.ImageView
 import android.widget.Toast
+import android.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.navigation.Navigation
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -31,10 +28,9 @@ import com.seda.shoppingapp.databinding.FragmentUserProfilBinding
 import com.seda.shoppingapp.model.User
 import com.seda.shoppingapp.utils.GlideLoader
 import java.io.IOException
-import java.util.jar.Manifest
 
 
- class UserProfilFragment : Fragment(),View.OnClickListener {
+class UserProfilFragment : Fragment(),View.OnClickListener {
      val bundle : UserProfilFragmentArgs by navArgs()
     private lateinit var mProgressDialog: Dialog
     private lateinit var _binding :FragmentUserProfilBinding
@@ -67,20 +63,33 @@ private var mselectedImage :Uri?= null
        userid= bundle.user1.id
 
 
-
-
-
-        binding.first.isEnabled = false
-        binding.first.setText(user.firstName)
-
-        binding.last.isEnabled = false
-        binding.last.setText(user.lastName)
-
-        binding.email1.isEnabled = false
-        binding.email1.setText(user.email)
-
         binding.userPhoto.setOnClickListener(this)
         binding.submit.setOnClickListener(this)
+             if(user.profileCompleted == 0) {
+                 binding.first.isEnabled = false
+                 binding.first.setText(user.firstName)
+
+                 binding.last.isEnabled = false
+                 binding.last.setText(user.lastName)
+
+                 binding.email1.isEnabled = false
+                 binding.email1.setText(user.email)
+
+
+             }else{
+                 GlideLoader(requireContext()).loadUserPicture(user.image,binding.userPhoto)
+                 binding.first.isEnabled = true
+                 binding.first.setText(user.firstName)
+
+                 binding.last.isEnabled = true
+                 binding.last.setText(user.lastName)
+
+                 binding.email1.isEnabled = true
+                 binding.email1.setText(user.email)
+
+
+             }
+
     }
 
     override fun onClick(v: View?) {
@@ -125,6 +134,8 @@ private var mselectedImage :Uri?= null
             }
         }
     }
+
+
     fun updateProfildetails() {
         val userHashMap = mutableMapOf<String,Any>()
 
@@ -170,9 +181,9 @@ private var mselectedImage :Uri?= null
         hideProgressDialog()
         Toast.makeText(requireContext(),"Profile oluşturuldu",Toast.LENGTH_LONG).show()
 
-       val intet =Intent(context,MainActivity2::class.java)
-        intet.putExtra("userid",userid)
-startActivity(intet)
+        val intent =Intent(context,MainActivity2::class.java)
+        startActivity(intent)
+
     }
 
     override fun onRequestPermissionsResult(

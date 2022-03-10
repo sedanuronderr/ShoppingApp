@@ -70,5 +70,17 @@
         <argument
             android:name="user1"
             app:argType="com.seda.shoppingapp.model.User" />
+        <action
+            android:id="@+id/action_userProfilFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.seda.shoppingapp.activies.ui.dashboard.DashboardFragment"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" >
+        <argument
+            android:name="userid"
+            app:argType="string" />
     </fragment>
 </navigation>
