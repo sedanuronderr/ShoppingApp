@@ -34,13 +34,13 @@ import java.io.IOException
 import java.util.jar.Manifest
 
 
-class UserProfilFragment : Fragment(),View.OnClickListener {
+ class UserProfilFragment : Fragment(),View.OnClickListener {
      val bundle : UserProfilFragmentArgs by navArgs()
     private lateinit var mProgressDialog: Dialog
     private lateinit var _binding :FragmentUserProfilBinding
        private  val binding  get()=_binding
     private lateinit var auth: FirebaseAuth
-  private lateinit var userid: String
+  lateinit var userid: String
 val completed = 1
 private var mselectedImage :Uri?= null
     private var imageUrl:String =""
@@ -169,10 +169,10 @@ private var mselectedImage :Uri?= null
     fun userProfileUpdate(){
         hideProgressDialog()
         Toast.makeText(requireContext(),"Profile oluşturuldu",Toast.LENGTH_LONG).show()
-        view?.let { Navigation.findNavController(it).navigate(R.id.baseFragment)
 
-        }
-
+       val intet =Intent(context,MainActivity2::class.java)
+        intet.putExtra("userid",userid)
+startActivity(intet)
     }
 
     override fun onRequestPermissionsResult(

@@ -1,5 +1,6 @@
 package com.seda.shoppingapp.Firestore
 
+import android.app.Activity
 import android.content.Context
 import android.graphics.Color
 import android.net.Uri
@@ -15,13 +16,14 @@ import com.google.firebase.storage.StorageReference
 import com.seda.shoppingapp.Constants
 import com.seda.shoppingapp.activies.LoginFragment
 import com.seda.shoppingapp.activies.RegisterFragment
+import com.seda.shoppingapp.activies.SettingsActivity
 import com.seda.shoppingapp.activies.UserProfilFragment
 import com.seda.shoppingapp.model.User
 
 class FirestoreClass {
 
 companion object {
-
+    var currentId =""
     fun registerUser(activity: RegisterFragment, userInfo:User) {
        val db = FirebaseFirestore.getInstance()
        // val db = Firebase.firestore
@@ -54,7 +56,7 @@ companion object {
 
 
     fun getcurrentId():String{
-        var currentId =""
+
         val currentUser = FirebaseAuth.getInstance().currentUser
         if(currentUser!=null){
             currentId= currentUser.uid
@@ -136,6 +138,40 @@ fun updateUser(activity: Fragment,userHashMap:MutableMap<String, Any> ,id:String
        }
        Log.e(activity.javaClass.simpleName,exception.message!!,exception)
    }
+    }
+
+    fun registeractivityget(activity: Activity){
+        val db = FirebaseFirestore.getInstance()
+        db.collection("users").document(currentId)
+            .get().addOnSuccessListener { documentSnapshot ->
+                val city = documentSnapshot.toObject(User::class.java)
+                val per = activity.getSharedPreferences("kisiselbilgiler", Context.MODE_PRIVATE)
+                val editor =per?.edit()
+                editor?.putString("username","${city?.firstName} ")
+                editor?.putString("lastname","${city?.lastName}")
+
+                editor?.putString("email","${city?.email}")
+                editor?.apply()
+
+       when(activity){
+          is SettingsActivity->{
+              if (city != null) {
+                  activity.userDetailsuccess(city)
+              }
+          }
+           }
+
+
+            }.addOnFailureListener{
+                when(activity){
+                    is SettingsActivity->{
+                        activity.hideProgressDialog()
+                    }
+                }
+
+
+            }
+
     }
 }
 

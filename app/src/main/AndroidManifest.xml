@@ -19,14 +19,7 @@
         <activity
             android:name=".activies.MainActivity2"
             android:exported="false" />
-        <activity
-            android:name=".activies.dashboardActivity"
-            android:exported="false"
-            android:label="@string/title_activity_dashboard" />
-        <activity
-            android:name=".activies.DashBoard"
-            android:exported="false"
-            android:label="@string/title_activity_dash_board" />
+
         <activity
             android:name=".activies.SplashActivity"
             android:exported="true"

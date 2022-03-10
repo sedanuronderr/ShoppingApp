@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.seda.shoppingapp.R
+import com.seda.shoppingapp.activies.MainActivity2
 import com.seda.shoppingapp.activies.SettingsActivity
 import com.seda.shoppingapp.databinding.FragmentDashboardBinding
 
@@ -69,7 +70,9 @@ class DashboardFragment : Fragment() {
             }
         }
     }
+fun ddd(s:String){
 
+}
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 

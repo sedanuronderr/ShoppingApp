@@ -8,6 +8,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.WindowInsets
 import android.view.WindowManager
+import androidx.navigation.Navigation
+import com.seda.shoppingapp.R
 import com.seda.shoppingapp.databinding.ActivitySplashBinding
 
 @SuppressLint("CustomSplashScreen")
@@ -27,8 +29,8 @@ class SplashActivity : AppCompatActivity() {
             )
         }
         Handler().postDelayed({
-            startActivity(Intent(this, MainActivity2::class.java))
-            finish()
+
+           startActivity(Intent(this,MainActivity::class.java))
         },
         1500
             )
